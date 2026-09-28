@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UK Woman's Club Online Membership Form</title>
+<style>
+  :root {
+    --ukwc-purple: #6a3fa0;
+    --ukwc-purple-dark: #4b2d73;
+    --ukwc-bg: #f2ecfa;
+    --ukwc-border: #c9b8e8;
+    --ukwc-text: #2e2440;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--ukwc-bg);
+    color: var(--ukwc-text);
+    padding: 24px 12px 60px;
+  }
+  .card {
+    max-width: 640px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--ukwc-border);
+    border-radius: 10px;
+    padding: 28px 28px 36px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--ukwc-purple-dark);
+    margin-top: 0;
+    margin-bottom: 28px;
+  }
+  .row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .row > .field { flex: 1; min-width: 0; }
+  .field { margin-bottom: 16px; }
+  label {
+    display: block;
+    font-size: 0.85rem;
+    color: #5c4a80;
+    margin-bottom: 4px;
+    font-family: Arial, sans-serif;
+  }
+  input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--ukwc-border);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-family: Arial, sans-serif;
+    background: #fff;
+  }
+  fieldset {
+    border: none;
+    padding: 0;
+    margin: 0 0 20px;
+  }
+  legend {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    padding: 0;
+  }
+  .choice-group { font-family: Arial, sans-serif; font-size: 0.92rem; }
+  .choice-group label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.92rem;
+    color: var(--ukwc-text);
+    margin-bottom: 8px;
+    cursor: pointer;
+  }
+  .choice-group input { margin-top: 3px; flex-shrink: 0; }
+  .subheading {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 0.95rem;
+    margin: 26px 0 4px;
+  }
+  .subtext {
+    font-family: Arial, sans-serif;
+    font-size: 0.82rem;
+    color: #6b5c8c;
+    margin-bottom: 12px;
+  }
+  .interest-columns {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .photo-release {
+    font-family: Arial, sans-serif;
+    font-size: 0.85rem;
+    background: var(--ukwc-bg);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin: 24px 0;
+    line-height: 1.4;
+  }
+  .photo-release strong { color: var(--ukwc-purple-dark); }
+  button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: var(--ukwc-purple);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  button:hover { background: var(--ukwc-purple-dark); }
+  button:disabled { opacity: 0.6; cursor: not-allowed; }
+  .required { color: #b33; }
+  .status-msg {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    margin-top: 14px;
+    min-height: 1.2em;
+  }
+  @media (max-width: 480px) {
+    .row { flex-direction: column; gap: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>UK Woman's Club Online<br>Membership Form</h1>
+
+  <form id="membershipForm">
+    <div class="row">
+      <div class="field">
+        <label>First Name <span class="required">*</span></label>
+        <input type="text" name="First Name" required>
+      </div>
+      <div class="field">
+        <label>Last Name <span class="required">*</span></label>
+        <input type="text" name="Last Name" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Date of Birth (month and day only)</label>
+      <input type="text" name="Date of Birth" placeholder="MM/DD">
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label>Street Address</label>
+        <input type="text" name="Street Address">
+      </div>
+      <div class="field">
+        <label>Street Address Line 2</label>
+        <input type="text" name="Street Address Line 2">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label>City</label>
+        <input type="text" name="City">
+      </div>
+      <div class="field">
+        <label>Region/State/Province</label>
+        <input type="text" name="Region/State/Province">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label>Postal / Zip Code</label>
+        <input type="text" name="Postal/Zip">
+      </div>
+      <div class="field">
+        <label>Country</label>
+        <select name="Country">
+          <option value="">Select...</option>
+          <option>United States</option>
+          <option>Canada</option>
+          <option>United Kingdom</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label>Phone (Mobile)</label>
+        <input type="tel" name="Phone Mobile" placeholder="### ### ####">
+      </div>
+      <div class="field">
+        <label>Phone (Home)</label>
+        <input type="tel" name="Phone Home" placeholder="### ### ####">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label>Email <span class="required">*</span></label>
+        <input type="email" name="Email" required>
+      </div>
+      <div class="field">
+        <label>Profession</label>
+        <input type="text" name="Profession">
+      </div>
+    </div>
+
+    <fieldset>
+      <legend>How did you learn of the UK Woman's Club? (Optional)</legend>
+      <div class="choice-group">
+        <label><input type="radio" name="How Learned" value="Advertisement/pamphlet" checked> I learned about the club through an advertisement/pamphlet</label>
+        <label><input type="radio" name="How Learned" value="Friend"> I learned about the club through a friend</label>
+        <label><input type="radio" name="How Learned" value="Web"> I learned about the club from the Web (search engine, Facebook, etc.)</label>
+      </div>
+    </fieldset>
+
+    <div class="row">
+      <div class="field">
+        <label>Any University of KY affiliation? (Optional — not required to become a member)</label>
+        <input type="text" name="UK Affiliation">
+      </div>
+      <div class="field">
+        <label>Optional: Spouse or Partner's name (and UK department if applicable)</label>
+        <input type="text" name="Spouse/Partner">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>If an existing member, how many years?</label>
+      <input type="text" name="Years as Member" style="max-width:160px;">
+    </div>
+
+    <div class="subheading">Please select the volunteer committee(s) in which you might like to participate:</div>
+    <div class="choice-group interest-columns">
+      <label><input type="checkbox" name="Committee" value="Bake for Bake Sale"> Bake for "Bake Sale"</label>
+      <label><input type="checkbox" name="Committee" value="Club History"> Club History</label>
+      <label><input type="checkbox" name="Committee" value="Hospitality"> Hospitality</label>
+      <label><input type="checkbox" name="Committee" value="Marketing & Public Relations"> Marketing &amp; Public Relations</label>
+      <label><input type="checkbox" name="Committee" value="Membership"> Membership</label>
+      <label><input type="checkbox" name="Committee" value="Newsletter"> Newsletter</label>
+      <label><input type="checkbox" name="Committee" value="Philanthropy"> Philanthropy</label>
+      <label><input type="checkbox" name="Committee" value="Program"> Program</label>
+      <label><input type="checkbox" name="Committee" value="Social & Decorating and Special Events"> Social &amp; Decorating and Special Events</label>
+      <label><input type="checkbox" name="Committee" value="Standing Committees"> Standing Committees (Audit, Budget and Investment, Scholarship/Fellowship)</label>
+    </div>
+
+    <div class="subheading">Please select the Interest Groups in which you would like to participate.</div>
+    <div class="subtext">Descriptions of these groups can be found on the webpage "Interest Groups". Meeting times are subject to change based on members' consensus.</div>
+
+    <div class="subheading" style="margin-top:16px;">Daytime Interest Groups</div>
+    <div class="choice-group interest-columns">
+      <label><input type="checkbox" name="Interest Group" value="Amateur Artist"> Amateur Artist</label>
+      <label><input type="checkbox" name="Interest Group" value="Bridge - Level II Instructional"> Bridge - Level II Instructional</label>
+      <label><input type="checkbox" name="Interest Group" value="Bridge - Monday Duplicate"> Bridge - Monday Duplicate</label>
+      <label><input type="checkbox" name="Interest Group" value="Bridge - Monday Party"> Bridge - Monday Party</label>
+      <label><input type="checkbox" name="Interest Group" value="Cooking With Friends"> Cooking With Friends</label>
+      <label><input type="checkbox" name="Interest Group" value="Garden Gurus"> Garden Gurus</label>
+      <label><input type="checkbox" name="Interest Group" value="Gone Golfing"> Gone Golfing</label>
+      <label><input type="checkbox" name="Interest Group" value="Let's Go"> Let's Go</label>
+      <label><input type="checkbox" name="Interest Group" value="Mah Jongg Basics"> Mah Jongg Basics</label>
+      <label><input type="checkbox" name="Interest Group" value="Mah Jongg"> Mah Jongg</label>
+      <label><input type="checkbox" name="Interest Group" value="Morning Book Discussion"> Morning Book Discussion</label>
+    </div>
+
+    <div class="subheading" style="margin-top:16px;">Evening Interest Groups</div>
+    <div class="choice-group interest-columns">
+      <label><input type="checkbox" name="Interest Group" value="After Five (Ladies Night Out)"> After Five (Ladies Night Out)</label>
+      <label><input type="checkbox" name="Interest Group" value="Couples Bridge"> Couples Bridge</label>
+      <label><input type="checkbox" name="Interest Group" value="Evening Book Discussion"> Evening Book Discussion</label>
+      <label><input type="checkbox" name="Interest Group" value="Wine Time"> Wine Time</label>
+    </div>
+
+    <div class="photo-release">
+      <strong>UKWC Member Photo Release:</strong> Photos taken at Club events may be used by the Club in our newsletter, on our website or Facebook account. It is the responsibility of club members to step out of a photo or inform the photographer if they do not want their photo taken and published.
+    </div>
+
+    <button type="submit" id="submitBtn">Proceed to Checkout ($42.00)</button>
+    <div class="status-msg" id="statusMsg"></div>
+  </form>
+</div>
+
+<script>
+  // ---- CONFIG: fill these in before deploying ----
+  // 1. Google Apps Script Web App URL (see google-apps-script.gs — deploy it, then paste the /exec URL here)
+  const SHEET_WEBAPP_URL = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec";
+  // 2. Square Payment Link for $42.00 ($40 dues + $2 fee) — Square Dashboard > Online Checkout > Payment Links
+  const SQUARE_CHECKOUT_URL = "https://checkout.square.site/YOUR_LINK";
+  // --------------------------------------------------
+
+  const form = document.getElementById('membershipForm');
+  const btn = document.getElementById('submitBtn');
+  const statusMsg = document.getElementById('statusMsg');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    btn.disabled = true;
+    statusMsg.textContent = 'Submitting...';
+
+    const data = {};
+    new FormData(form).forEach((value, key) => {
+      // checkboxes share a name, so collect them into arrays
+      if (data.hasOwnProperty(key)) {
+        if (Array.isArray(data[key])) {
+          data[key].push(value);
+        } else {
+          data[key] = [data[key], value];
+        }
+      } else {
+        data[key] = value;
+      }
+    });
+    data['Submitted At'] = new Date().toISOString();
+
+    try {
+      // no-cors: Apps Script web apps don't return CORS headers, so the response
+      // body isn't readable here — we just fire the request and trust the redirect.
+      await fetch(SHEET_WEBAPP_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(data)
+      });
+
+      statusMsg.textContent = 'Thanks! Redirecting you to checkout...';
+      setTimeout(() => {
+        window.location.href = SQUARE_CHECKOUT_URL;
+      }, 900);
+    } catch (err) {
+      statusMsg.textContent = 'Something went wrong submitting the form. Please try again or contact the club.';
+      btn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
