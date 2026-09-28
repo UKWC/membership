@@ -41,15 +41,70 @@ headers: {
 body: JSON.stringify(payload)
 });
  
-const sheetText = await sheetResponse.text();
- 
 if (!sheetResponse.ok) {
+const text = await sheetResponse.text();
+ 
 return {
 statusCode: 500,
 headers: CORS_HEADERS,
 body: JSON.stringify({
 error: 'Google Sheet error',
-detail: sheetText
+detail: text
+})
+};
+}
+ 
+const amountCents = Math.round(
+Number(payload.total || 42) * 100
+);
+ 
+const squareResponse = await fetch(
+'https://connect.squareup.com/v2/online-checkout/payment-links',
+{
+method: 'POST',
+headers: {
+'Content-Type': 'application/json',
+Authorization:
+`Bearer ${process.env.SQUARE_ACCESS_TOKEN}`,
+'Square-Version': '2024-01-18'
+},
+body: JSON.stringify({
+idempotency_key:
+`${Date.now()}-${Math.random()}`,
+ 
+quick_pay: {
+name:
+`UKWC Membership - ${payload.firstName} ${payload.lastName}`,
+price_money: {
+amount: amountCents,
+currency: 'USD'
+},
+location_id:
+process.env.SQUARE_LOCATION_ID
+},
+ 
+checkout_options: {
+redirect_url:
+process.env.REDIRECT_URL
+},
+ 
+pre_populated_data: {
+buyer_email: payload.email
+}
+})
+}
+);
+ 
+const squareResult =
+await squareResponse.json();
+ 
+if (!squareResponse.ok) {
+return {
+statusCode: 500,
+headers: CORS_HEADERS,
+body: JSON.stringify({
+error: 'Square API error',
+detail: squareResult
 })
 };
 }
@@ -58,10 +113,13 @@ return {
 statusCode: 200,
 headers: CORS_HEADERS,
 body: JSON.stringify({
-success: true
+paymentUrl:
+squareResult.payment_link.url
 })
 };
+ 
 } catch (err) {
+ 
 return {
 statusCode: 500,
 headers: CORS_HEADERS,
@@ -69,5 +127,6 @@ body: JSON.stringify({
 error: err.message
 })
 };
+ 
 }
 };
