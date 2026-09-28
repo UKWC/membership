@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UK Woman's Club Online Membership Form</title>
+<style>
+  :root {
+    --ukwc-purple: #6a3fa0;
+    --ukwc-purple-dark: #4b2d73;
+    --ukwc-bg: #f2ecfa;
+    --ukwc-border: #c9b8e8;
+    --ukwc-text: #2e2440;
+    --error: #B3261E;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--ukwc-bg);
+    color: var(--ukwc-text);
+    padding: 24px 12px 60px;
+  }
+  .card {
+    max-width: 640px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--ukwc-border);
+    border-radius: 10px;
+    padding: 28px 28px 36px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--ukwc-purple-dark);
+    margin-top: 0;
+    margin-bottom: 28px;
+  }
+  .row { display: flex; gap: 16px; margin-bottom: 16px; }
+  .row > .field { flex: 1; min-width: 0; }
+  .field { margin-bottom: 16px; }
+  label {
+    display: block;
+    font-size: 0.85rem;
+    color: #5c4a80;
+    margin-bottom: 4px;
+    font-family: Arial, sans-serif;
+  }
+  input[type="text"], input[type="email"], input[type="tel"], select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--ukwc-border);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-family: Arial, sans-serif;
+    background: #fff;
+  }
+  fieldset { border: none; padding: 0; margin: 0 0 20px; }
+  legend {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    padding: 0;
+  }
+  .choice-group { font-family: Arial, sans-serif; font-size: 0.92rem; }
+  .choice-group label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.92rem;
+    color: var(--ukwc-text);
+    margin-bottom: 8px;
+    cursor: pointer;
+  }
+  .choice-group input { margin-top: 3px; flex-shrink: 0; }
+  .subheading { font-family: Arial, sans-serif; font-weight: bold; font-size: 0.95rem; margin: 26px 0 4px; }
+  .subtext { font-family: Arial, sans-serif; font-size: 0.82rem; color: #6b5c8c; margin-bottom: 12px; }
+  .interest-columns { display: grid; grid-template-columns: 1fr; gap: 4px; }
+  .photo-release {
+    font-family: Arial, sans-serif;
+    font-size: 0.85rem;
+    background: var(--ukwc-bg);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin: 24px 0;
+    line-height: 1.4;
+  }
+  .photo-release strong { color: var(--ukwc-purple-dark); }
+  .totals {
+    margin-top: 22px;
+    padding: 16px;
+    background: var(--ukwc-bg);
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 0.92rem;
+  }
+  .totals .line { display: flex; justify-content: space-between; padding: 3px 0; }
+  .totals .grand {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--ukwc-purple-dark);
+    border-top: 1px solid var(--ukwc-border);
+    margin-top: 8px;
+    padding-top: 8px;
+  }
+  button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: var(--ukwc-purple);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 16px;
+  }
+  button:hover { background: var(--ukwc-purple-dark); }
+  button:disabled { background: #999; cursor: not-allowed; }
+  .required { color: var(--error); }
+  .error-msg {
+    color: var(--error);
+    font-family: Arial, sans-serif;
+    font-size: 0.88rem;
+    margin-top: 10px;
+    display: none;
+  }
+  @media (max-width: 480px) { .row { flex-direction: column; gap: 0; } }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>UK Woman's Club Online<br>Membership Form</h1>
+
+  <form id="membershipForm">
+    <div class="row">
+      <div class="field">
+        <label>First Name <span class="required">*</span></label>
+        <input type="text" id="firstName" required>
+      </div>
+      <div class="field">
+        <label>Last Name <span class="required">*</span></label>
+        <input type="text" id="lastName" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Date of Birth (month and day only)</label>
+      <input type="text" id="dob" placeholder="MM/DD">
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label>Street Address</label>
+        <input type="text" id="address1">
+      </div>
+      <div class="field">
+        <label>Street Address Line 2</label>
+        <input type="text" id="address2">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label>City</label>
+        <input type="text" id="city">
+      </div>
+      <div class="field">
+        <label>Region/State/Province</label>
+        <input type="text" id="region">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label>Postal / Zip Code</label>
+        <input type="text" id="zip">
+      </div>
+      <div class="field">
+        <label>Country</label>
+        <select id="country">
+          <option value="">Select...</option>
+          <option>United States</option>
+          <option>Canada</option>
+          <option>United Kingdom</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label>Phone (Mobile)</label>
+        <input type="tel" id="phoneMobile" placeholder="### ### ####">
+      </div>
+      <div class="field">
+        <label>Phone (Home)</label>
+        <input type="tel" id="phoneHome" placeholder="### ### ####">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label>Email <span class="required">*</span></label>
+        <input type="email" id="email" required>
+      </div>
+      <div class="field">
+        <label>Profession</label>
+        <input type="text" id="profession">
+      </div>
+    </div>
+
+    <fieldset>
+      <legend>How did you learn of the UK Woman's Club? (Optional)</legend>
+      <div class="choice-group">
+        <label><input type="radio" name="howLearned" value="Advertisement/pamphlet" checked> I learned about the club through an advertisement/pamphlet</label>
+        <label><input type="radio" name="howLearned" value="Friend"> I learned about the club through a friend</label>
+        <label><input type="radio" name="howLearned" value="Web"> I learned about the club from the Web (search engine, Facebook, etc.)</label>
+      </div>
+    </fieldset>
+
+    <div class="row">
+      <div class="field">
+        <label>Any University of KY affiliation? (Optional — not required to become a member)</label>
+        <input type="text" id="ukAffiliation">
+      </div>
+      <div class="field">
+        <label>Optional: Spouse or Partner's name (and UK department if applicable)</label>
+        <input type="text" id="spousePartner">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>If an existing member, how many years?</label>
+      <input type="text" id="yearsMember" style="max-width:160px;">
+    </div>
+
+    <div class="subheading">Please select the volunteer committee(s) in which you might like to participate:</div>
+    <div class="choice-group interest-columns" id="committeeGroup">
+      <label><input type="checkbox" value="Bake for Bake Sale"> Bake for "Bake Sale"</label>
+      <label><input type="checkbox" value="Club History"> Club History</label>
+      <label><input type="checkbox" value="Hospitality"> Hospitality</label>
+      <label><input type="checkbox" value="Marketing & Public Relations"> Marketing &amp; Public Relations</label>
+      <label><input type="checkbox" value="Membership"> Membership</label>
+      <label><input type="checkbox" value="Newsletter"> Newsletter</label>
+      <label><input type="checkbox" value="Philanthropy"> Philanthropy</label>
+      <label><input type="checkbox" value="Program"> Program</label>
+      <label><input type="checkbox" value="Social & Decorating and Special Events"> Social &amp; Decorating and Special Events</label>
+      <label><input type="checkbox" value="Standing Committees"> Standing Committees (Audit, Budget and Investment, Scholarship/Fellowship)</label>
+    </div>
+
+    <div class="subheading">Please select the Interest Groups in which you would like to participate.</div>
+    <div class="subtext">Descriptions of these groups can be found on the webpage "Interest Groups". Meeting times are subject to change based on members' consensus.</div>
+
+    <div class="subheading" style="margin-top:16px;">Daytime Interest Groups</div>
+    <div class="choice-group interest-columns" id="daytimeGroup">
+      <label><input type="checkbox" value="Amateur Artist"> Amateur Artist</label>
+      <label><input type="checkbox" value="Bridge - Level II Instructional"> Bridge - Level II Instructional</label>
+      <label><input type="checkbox" value="Bridge - Monday Duplicate"> Bridge - Monday Duplicate</label>
+      <label><input type="checkbox" value="Bridge - Monday Party"> Bridge - Monday Party</label>
+      <label><input type="checkbox" value="Cooking With Friends"> Cooking With Friends</label>
+      <label><input type="checkbox" value="Garden Gurus"> Garden Gurus</label>
+      <label><input type="checkbox" value="Gone Golfing"> Gone Golfing</label>
+      <label><input type="checkbox" value="Let's Go"> Let's Go</label>
+      <label><input type="checkbox" value="Mah Jongg Basics"> Mah Jongg Basics</label>
+      <label><input type="checkbox" value="Mah Jongg"> Mah Jongg</label>
+      <label><input type="checkbox" value="Morning Book Discussion"> Morning Book Discussion</label>
+    </div>
+
+    <div class="subheading" style="margin-top:16px;">Evening Interest Groups</div>
+    <div class="choice-group interest-columns" id="eveningGroup">
+      <label><input type="checkbox" value="After Five (Ladies Night Out)"> After Five (Ladies Night Out)</label>
+      <label><input type="checkbox" value="Couples Bridge"> Couples Bridge</label>
+      <label><input type="checkbox" value="Evening Book Discussion"> Evening Book Discussion</label>
+      <label><input type="checkbox" value="Wine Time"> Wine Time</label>
+    </div>
+
+    <div class="photo-release">
+      <strong>UKWC Member Photo Release:</strong> Photos taken at Club events may be used by the Club in our newsletter, on our website or Facebook account. It is the responsibility of club members to step out of a photo or inform the photographer if they do not want their photo taken and published.
+    </div>
+
+    <div class="totals">
+      <div class="line"><span>Annual membership dues</span><span>$40.00</span></div>
+      <div class="line"><span>Card processing fee</span><span>$2.00</span></div>
+      <div class="line grand"><span>Total Due</span><span>$42.00</span></div>
+    </div>
+
+    <div class="error-msg" id="errorMsg"></div>
+
+    <button type="submit" id="submitBtn">Proceed to Checkout</button>
+  </form>
+</div>
+
+<script>
+  const PAYMENT_ENDPOINT_URL = "/.netlify/functions/create-payment-link";
+  const TOTAL_DUE = 42.00;
+
+  const form = document.getElementById('membershipForm');
+  const errorMsg = document.getElementById('errorMsg');
+  const submitBtn = document.getElementById('submitBtn');
+
+  function checkedValues(containerId) {
+    return Array.from(
+      document.querySelectorAll('#' + containerId + ' input[type="checkbox"]:checked')
+    ).map(cb => cb.value);
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorMsg.style.display = 'none';
+
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    if (!firstName || !lastName || !email) {
+      errorMsg.textContent = 'Please fill in your first name, last name, and email.';
+      errorMsg.style.display = 'block';
+      return;
+    }
+
+    const payload = {
+      firstName,
+      lastName,
+      email,
+      dob: document.getElementById('dob').value.trim(),
+      address1: document.getElementById('address1').value.trim(),
+      address2: document.getElementById('address2').value.trim(),
+      city: document.getElementById('city').value.trim(),
+      region: document.getElementById('region').value.trim(),
+      zip: document.getElementById('zip').value.trim(),
+      country: document.getElementById('country').value,
+      phoneMobile: document.getElementById('phoneMobile').value.trim(),
+      phoneHome: document.getElementById('phoneHome').value.trim(),
+      profession: document.getElementById('profession').value.trim(),
+      howLearned: (form.querySelector('input[name="howLearned"]:checked') || {}).value || '',
+      ukAffiliation: document.getElementById('ukAffiliation').value.trim(),
+      spousePartner: document.getElementById('spousePartner').value.trim(),
+      yearsMember: document.getElementById('yearsMember').value.trim(),
+      committees: checkedValues('committeeGroup'),
+      interestGroups: [
+        ...checkedValues('daytimeGroup'),
+        ...checkedValues('eveningGroup')
+      ],
+      total: TOTAL_DUE
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Preparing payment…';
+
+    try {
+      const res = await fetch(PAYMENT_ENDPOINT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        console.error('Payment function error:', data);
+        throw new Error(data.error || 'Payment request failed');
+      }
+
+      if (!data.paymentUrl) {
+        throw new Error('No payment link returned');
+      }
+
+      window.location.href = data.paymentUrl;
+
+    } catch (err) {
+      console.error('Payment error:', err);
+      errorMsg.textContent = 'Something went wrong creating your payment link. Please try again or contact the club.';
+      errorMsg.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Proceed to Checkout';
+    }
+  });
+</script>
+</body>
+</html>

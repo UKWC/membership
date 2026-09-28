@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thank You — UK Woman's Club</title>
+<style>
+  :root {
+    --ukwc-purple: #6a3fa0;
+    --ukwc-purple-dark: #4b2d73;
+    --ukwc-bg: #f2ecfa;
+    --ukwc-border: #c9b8e8;
+    --ukwc-text: #2e2440;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--ukwc-bg);
+    color: var(--ukwc-text);
+    padding: 60px 16px;
+  }
+  .card {
+    max-width: 480px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--ukwc-border);
+    border-radius: 10px;
+    padding: 40px 32px;
+    text-align: center;
+  }
+  h1 { color: var(--ukwc-purple-dark); font-size: 1.6rem; margin-bottom: 12px; }
+  p { font-family: Arial, sans-serif; font-size: 1rem; line-height: 1.6; margin: 8px 0; }
+  .detail {
+    font-family: Arial, sans-serif;
+    background: var(--ukwc-bg);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 20px 0;
+    font-size: 0.95rem;
+  }
+  a.home-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--ukwc-purple);
+    font-family: Arial, sans-serif;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  a.home-link:hover { color: var(--ukwc-purple-dark); }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Welcome to the Club!</h1>
+  <p>Thanks for joining the UK Woman's Club — your payment has been received.</p>
+  <div class="detail" id="detail"></div>
+  <p>A confirmation has been logged with your membership record. We'll be in touch about upcoming events and your selected committees/interest groups.</p>
+  <a class="home-link" href="https://ukwc.org">Return to ukwc.org</a>
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const name = params.get('name');
+  const total = params.get('total');
+  const detail = document.getElementById('detail');
+
+  if (name || total) {
+    detail.textContent =
+      (name ? name : 'Member') +
+      (total ? ' — $' + total + ' paid' : '');
+  } else {
+    detail.style.display = 'none';
+  }
+</script>
+</body>
+</html>
